@@ -58,7 +58,7 @@
 {
     if (timer != _timer) {
         [_timer invalidate];
-        _timer = nil;
+        _timer = timer;
     }
 }
 

@@ -9,6 +9,8 @@
 #import "IIIStopwatchViewController.h"
 #import "IIIStopwatch.h"
 
+void *KVOContext = &KVOContext; // Andrew's pattern for KVO. Always use this with KVO
+
 @interface IIIStopwatchViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UIButton *resetButton;
@@ -27,23 +29,27 @@
     [super viewDidLoad];
     
     self.stopwatch = [[IIIStopwatch alloc] init];
-    [self updateViews];
+}
+
+- (void)dealloc
+{
+    self.stopwatch = nil;
 }
 
 // MARK: - Actions
 
 - (IBAction)reset:(id)sender
 {
+    [self.stopwatch reset];
+}
+
+- (IBAction)startOrStop:(id)sender
+{
     if (self.stopwatch.isRunning) {
         [self.stopwatch stop];
     } else {
         [self.stopwatch start];
     }
-}
-
-- (IBAction)startOrStop:(id)sender
-{
-    [self.stopwatch reset];
 }
 
 // MARK: - Private
@@ -69,6 +75,39 @@
     NSInteger minutes = (timeIntervalAsInt / 60) % 60;
     NSInteger hours = (timeIntervalAsInt / 3600);
     return [NSString stringWithFormat:@"%02ld:%02ld:%02ld.%ld", (long)hours, (long)minutes, (long)seconds, (long)tenths];
+}
+
+// MARK: - KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    if (context == KVOContext) {
+        [self updateViews];
+    } else {
+        [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
+    }
+}
+
+
+// MARK: -Properties
+
+- (void)setStopwatch:(IIIStopwatch *)stopwatch
+{
+    if (stopwatch != _stopwatch) {
+        [_stopwatch removeObserver:self forKeyPath:@"running" context:KVOContext];
+        [_stopwatch removeObserver:self forKeyPath:@"elapsedTime" context:KVOContext];
+        
+        _stopwatch = stopwatch;
+        
+        [_stopwatch addObserver:self
+                     forKeyPath:@"running"
+                        options:NSKeyValueObservingOptionInitial
+                        context:KVOContext];
+        [_stopwatch addObserver:self
+                     forKeyPath:@"elapsedTime"
+                        options:NSKeyValueObservingOptionInitial
+                        context:KVOContext];
+    }
 }
 
 @end

@@ -35,7 +35,7 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <state key="normal" title="Reset"/>
                                                 <connections>
-                                                    <action selector="reset:" destination="SUT-H0-3vG" eventType="touchUpInside" id="59Q-fr-qxy"/>
+                                                    <action selector="reset:" destination="SUT-H0-3vG" eventType="touchUpInside" id="UAj-Le-7Oe"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltN-xT-QK1">
@@ -43,7 +43,7 @@
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                                 <state key="normal" title="Start"/>
                                                 <connections>
-                                                    <action selector="startOrStop:" destination="SUT-H0-3vG" eventType="touchUpInside" id="OX0-p0-2e0"/>
+                                                    <action selector="startOrStop:" destination="SUT-H0-3vG" eventType="touchUpInside" id="suM-vj-CAX"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -60,9 +60,9 @@
                         <viewLayoutGuide key="safeArea" id="Rhr-fO-XUA"/>
                     </view>
                     <connections>
-                        <outlet property="resetButton" destination="5SJ-Yj-1AN" id="lrn-gL-j4x"/>
-                        <outlet property="startStopButton" destination="ltN-xT-QK1" id="FoN-mM-NEE"/>
-                        <outlet property="timeLabel" destination="RJ4-FS-f2M" id="l0r-NP-BhG"/>
+                        <outlet property="resetButton" destination="5SJ-Yj-1AN" id="wwR-fl-1ZY"/>
+                        <outlet property="startStopButton" destination="ltN-xT-QK1" id="szw-L2-UjW"/>
+                        <outlet property="timeLabel" destination="RJ4-FS-f2M" id="CO7-KG-gCd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9E7-WT-gCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
