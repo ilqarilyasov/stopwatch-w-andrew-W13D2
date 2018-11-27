@@ -19,15 +19,12 @@
 
 - (IBAction)reset:(id)sender
 {
+    
 }
 
 - (IBAction)startOrStop:(id)sender
 {
-}
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
 }
 
 @end
