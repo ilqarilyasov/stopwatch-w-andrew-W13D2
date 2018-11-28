@@ -12,6 +12,7 @@
 
 @property (nonatomic, readwrite, getter=isRunning) BOOL running; // private
 @property (nonatomic, readwrite) NSTimeInterval elapsedTime; // private
+
 @property (nonatomic, strong) NSDate *startDate;
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic) NSTimeInterval previouslyAccumulatedTime;
